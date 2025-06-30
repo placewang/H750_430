@@ -1,0 +1,16 @@
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\gifdec.c
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\gifdec.h
+.\code\gifdec.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_fs.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/../lv_conf_internal.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/../lv_conf_kconfig.h
+.\code\gifdec.o: ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lv_conf.h
+.\code\gifdec.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_log.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_types.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_mem.h
+.\code\gifdec.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+.\code\gifdec.o: D:\MDK5\ARM\ARMCC\Bin\..\include\string.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_color.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_assert.h
+.\code\gifdec.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\gif\../../../misc/lv_math.h

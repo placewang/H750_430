@@ -1,0 +1,16 @@
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\lv_font.c
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\lv_font.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../lv_conf_internal.h
+.\code\lv_font.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../lv_conf_kconfig.h
+.\code\lv_font.o: ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lv_conf.h
+.\code\lv_font.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+.\code\lv_font.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\lv_symbol_def.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_area.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_utils.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_log.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_types.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_assert.h
+.\code\lv_font.o: ..\Middlewares\LVGL\GUI\lvgl\src\font\../misc/lv_mem.h
+.\code\lv_font.o: D:\MDK5\ARM\ARMCC\Bin\..\include\string.h

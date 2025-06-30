@@ -1,0 +1,9 @@
+.\code\qrcodegen.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\qrcode\qrcodegen.c
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\assert.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\limits.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\string.h
+.\code\qrcodegen.o: ..\Middlewares\LVGL\GUI\lvgl\src\extra\libs\qrcode\qrcodegen.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+.\code\qrcodegen.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h

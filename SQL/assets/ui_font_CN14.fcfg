@@ -1,0 +1,16 @@
+{
+  "codename": "CN14",
+  "ttf_path": "\\assets\\simhei.ttf",
+  "bin_path": "\\assets\\ui_font_CN14.bin",
+  "c_path": "\\assets\\ui_font_CN14.c",
+  "cfg_path": "\\assets\\ui_font_CN14.fcfg",
+  "size": 14,
+  "bpp": 4,
+  "letters": 0,
+  "ranges": [
+    "0x20-0x7f"
+  ],
+  "symbols": "上下重启保存排刀电机底座正反向转关闭正常掉线错误牵引方向左右侧换放料使能",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}

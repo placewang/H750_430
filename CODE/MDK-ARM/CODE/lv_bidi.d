@@ -1,0 +1,17 @@
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_bidi.c
+.\code\lv_bidi.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_bidi.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_internal.h
+.\code\lv_bidi.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_kconfig.h
+.\code\lv_bidi.o: ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lv_conf.h
+.\code\lv_bidi.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_txt.h
+.\code\lv_bidi.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_area.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../font/lv_font.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../font/lv_symbol_def.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_printf.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_types.h
+.\code\lv_bidi.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../misc/lv_mem.h
+.\code\lv_bidi.o: D:\MDK5\ARM\ARMCC\Bin\..\include\string.h

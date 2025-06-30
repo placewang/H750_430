@@ -1,0 +1,13 @@
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_log.c
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_log.h
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_internal.h
+.\code\lv_log.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_kconfig.h
+.\code\lv_log.o: ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lv_conf.h
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_types.h
+.\code\lv_log.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\code\lv_log.o: D:\MDK5\ARM\ARMCC\Bin\..\include\string.h
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_printf.h
+.\code\lv_log.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+.\code\lv_log.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../hal/lv_hal_tick.h
+.\code\lv_log.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
