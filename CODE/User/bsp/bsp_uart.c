@@ -2,26 +2,23 @@
 #include <string.h>
 #include "usart.h"
 #include "bsp_uart.h"
-#include "QUEUE.h"
 
 #define TPT487_RE_PIN      GPIO_PIN_10
 #define TPT487_DE_PIN      GPIO_PIN_10
 #define TPT487_GPIO_PORT   GPIOG
 
-#define UART_RX_BUFFER_SIZE 20
-uint8_t uart5_rx_buffer[UART_RX_BUFFER_SIZE];
-uint8_t uart5_tx_buffer[UART_RX_BUFFER_SIZE];
+#define UART_RX_BUF_SIZE 256
+uint8_t uart5_rx_buf1[UART_RX_BUF_SIZE];
+uint8_t uart5_rx_buf2[UART_RX_BUF_SIZE];
+typedef struct
+{
+  unsigned char *current_buf;  // 当前活跃缓冲区  
+  int     rxLen;   
+}Uart_5;
 
-
-
-
-
-//队列数据定义
-#define UART5_RxQueue_SIZE  20
-
-GENERIC_QUEUE(Uart5Queue,uint8_t ,UART5_RxQueue_SIZE)
-
+Uart_5        uart5_Rx={.current_buf=uart5_rx_buf1};
 Uart5Queue_t  Uart5Queue;
+
 
 
 #define UART4_RX_BUF_NUM	16
@@ -53,25 +50,22 @@ int fputc(int ch, FILE *f)
 volatile uint16_t uart5_rx_len;
 
 // 
-HAL_StatusTypeDef UART5_Send_DMA(uint8_t *data, uint16_t length)
+HAL_StatusTypeDef UART5_SendData(uint8_t *data, uint16_t length)
 {
-    if(length > UART_RX_BUFFER_SIZE||length==0) return HAL_ERROR;
+    if(length==0) return HAL_ERROR;
     
     // 等待前一次发送完成
     while(HAL_UART_GetState(&huart5) == HAL_UART_STATE_BUSY_TX); 
     HAL_GPIO_WritePin(TPT487_GPIO_PORT, TPT487_RE_PIN, GPIO_PIN_SET); 
-    // 复制数据到发送缓冲区
-    memcpy(uart5_tx_buffer, data, length);
     
     //发送
-    HAL_UART_Transmit(&huart5, uart5_tx_buffer, length,500);
+    HAL_UART_Transmit(&huart5,data,length,500);
     while(HAL_UART_GetState(&huart5) == HAL_UART_STATE_BUSY_TX);
     HAL_GPIO_WritePin(TPT487_GPIO_PORT, TPT487_RE_PIN, GPIO_PIN_RESET); 
 }
 //
 void UART5_IRQHandler(void)
 {  
-   uint8_t data[256]={0}; 
     uint32_t error = huart5.ErrorCode;
     //溢出错误   
     if(error & HAL_UART_ERROR_ORE)
@@ -82,29 +76,33 @@ void UART5_IRQHandler(void)
     if (__HAL_UART_GET_FLAG(&huart5, UART_FLAG_IDLE) != RESET)
     {
         __HAL_UART_CLEAR_IDLEFLAG(&huart5);
-        //HAL_UART_Receive(&huart5,data,huart5.RxXferSize-huart5.RxXferCount,500);
-        printf("IDLE:%d_%d_%s\n",huart5.RxXferSize,huart5.RxXferCount,uart5_rx_buffer);
-      
-        UART5_Send_DMA(uart5_rx_buffer,huart5.RxXferSize-huart5.RxXferCount);
-     
+           // 手动调用接收完成回调（通知应用层）
+        HAL_UART_RxCpltCallback(&huart5);
     }
     HAL_UART_IRQHandler(&huart5);
 }
 //
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-    
+        
     if(huart->Instance == UART5)
-    {   huart5.RxXferCount=UART_RX_BUFFER_SIZE;
-        HAL_UART_Receive_IT(&huart5, uart5_rx_buffer, UART_RX_BUFFER_SIZE);
-        // 记录溢出错误
-        uint32_t error = huart->ErrorCode;
-        if(error & HAL_UART_ERROR_ORE)
+    {   
+        uart5_Rx.rxLen= huart5.RxXferSize-huart5.RxXferCount;
+        if (uart5_Rx.current_buf== uart5_rx_buf1)
         {
-            __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF);
-        }  
-        printf("Rxcall:%s\n",uart5_rx_buffer);
-        // 重新启动接收中断
+            uart5_Rx.current_buf=uart5_rx_buf2;
+           Uart5Queue_enqueue_batch(&Uart5Queue,uart5_rx_buf1,uart5_Rx.rxLen);
+        } 
+        else if(uart5_Rx.current_buf==uart5_rx_buf2)
+        {
+            uart5_Rx.current_buf=uart5_rx_buf1;
+            Uart5Queue_enqueue_batch(&Uart5Queue,uart5_rx_buf2,uart5_Rx.rxLen);
+        }        
+        if (huart->RxState != HAL_UART_STATE_READY)
+        {
+                HAL_UART_AbortReceive(&huart5);
+        }
+        HAL_UART_Receive_IT(&huart5, uart5_Rx.current_buf, UART_RX_BUF_SIZE);
     }
 }
 //错误处理增强
@@ -139,10 +137,9 @@ void BSP_UART_init(void)
     Uart5Queue_init(&Uart5Queue);
     HAL_NVIC_EnableIRQ(UART5_IRQn);
     HAL_NVIC_SetPriority(UART5_IRQn,0,0);
-    HAL_UART_Receive_IT(&huart5,uart5_rx_buffer,UART_RX_BUFFER_SIZE); // 单字节接收      
     __HAL_UART_ENABLE_IT(&huart5,UART_IT_IDLE);
-    __HAL_UART_CLEAR_FLAG(&huart5,UART_FLAG_IDLE);
-   
+    __HAL_UART_CLEAR_FLAG(&huart5,UART_FLAG_IDLE);    
+    HAL_UART_Receive_IT(&huart5, uart5_rx_buf1, UART_RX_BUF_SIZE);   
     HAL_GPIO_WritePin(TPT487_GPIO_PORT, TPT487_RE_PIN, GPIO_PIN_RESET);  
 }
 /*****************************************************************
@@ -183,13 +180,14 @@ unsigned char BSP_UART4_send_byte(unsigned char data)
 
 void BSP_UART_loop(void)
 {
-//	if (__HAL_UART_GET_FLAG(&huart5, UART_FLAG_RXNE) == SET)
-//	{
-////         __HAL_UART_CLEAR_FLAG(&huart5,UART_FLAG_RXNE); 
-//	   printf("%c\n", huart5.Instance->RDR & 0xFF);
-//		
-//	
-//	}	
+   int len=0;
+   uint8_t data[300]={0};
+	if (Uart5Queue.count>0)
+	{ 
+       len=Uart5Queue_dequeue_batch(&Uart5Queue,data,Uart5Queue.count);
+	   printf("%d__%s\n",len,data);	
+	
+	}	
 
 }
 
