@@ -50,6 +50,7 @@
 .\code\bsp_lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 .\code\bsp_lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 .\code\bsp_lcd.o: ../Core/Inc/gpio.h
+.\code\bsp_lcd.o: ../Core/Inc/tim.h
 .\code\bsp_lcd.o: ..\User\bsp\font.h
 .\code\bsp_lcd.o: ..\User\bsp\bsp_lcd.h
 .\code\bsp_lcd.o: ..\User\bsp\bsp_sdram.h

@@ -339,7 +339,7 @@
               <MiscControls>--diag_suppress=68,111,188,223,546,1295</MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../User/app;../User/bsp;../Middlewares/LVGL/GUI;../Middlewares/LVGL/GUI/lvgl;../Middlewares/LVGL/GUI/lvgl/src;../Middlewares/LVGL/GUI/lvgl/examples/porting;../Middlewares/LVGL/GUI_APP/demos;../Middlewares/LVGL/GUI_APP/demos/stress;../Middlewares/LVGL/GUI_APP/demos/widgets;../Middlewares/LVGL/GUI_APP/demos/music;../Middlewares/LVGL/MY_GUI;../Middlewares/LVGL/MY_GUI/components</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../User/app;../User/bsp;../Middlewares/LVGL/GUI;../Middlewares/LVGL/GUI/lvgl;../Middlewares/LVGL/GUI/lvgl/src;../Middlewares/LVGL/GUI/lvgl/examples/porting;../Middlewares/LVGL/GUI_APP/demos;../Middlewares/LVGL/GUI_APP/demos/stress;../Middlewares/LVGL/GUI_APP/demos/widgets;../Middlewares/LVGL/GUI_APP/demos/music;../Middlewares/LVGL/MY_GUI;../Middlewares/LVGL/MY_GUI/components;../MVP/View;../MVP/Model;../MVP/Presenter</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -3022,6 +3022,16 @@
               <FileType>1</FileType>
               <FilePath>..\User\app\app_HqServoProtocol.c</FilePath>
             </File>
+            <File>
+              <FileName>app_RowknifeSystem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\app\app_RowknifeSystem.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_RwKf_pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\app\app_RwKf_pid.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3518,11 +3528,6 @@
               <FilePath>..\Middlewares\LVGL\MY_GUI\screens\ui_config.c</FilePath>
             </File>
             <File>
-              <FileName>ui_my_set.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\MY_GUI\ui_my_set.c</FilePath>
-            </File>
-            <File>
               <FileName>ui_my_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Middlewares\LVGL\MY_GUI\ui_my_config.c</FilePath>
@@ -3657,6 +3662,11 @@
               <FileType>1</FileType>
               <FilePath>..\Middlewares\LVGL\MY_GUI\images\ui_img_whq_png.c</FilePath>
             </File>
+            <File>
+              <FileName>ui_img_frame_724b_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\LVGL\MY_GUI\images\ui_img_frame_724b_png.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3666,6 +3676,36 @@
               <FileName>test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\ext_flash\test.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MVP/Model</GroupName>
+          <Files>
+            <File>
+              <FileName>m_set.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MVP\Model\m_set.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MVP/Presenter</GroupName>
+          <Files>
+            <File>
+              <FileName>p_set.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MVP\Presenter\p_set.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MVP/View</GroupName>
+          <Files>
+            <File>
+              <FileName>ui_my_set.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MVP\View\ui_my_set.c</FilePath>
             </File>
           </Files>
         </Group>

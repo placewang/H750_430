@@ -7,16 +7,7 @@
 
 CAN1_RevQueue_t Can1RevQueue,Can1SendQueue;
 CAN2_RevQueue_t Can2RevQueue,Can2SendQueue;
-
-//Queue Can1_RevQueue;	    			  
-//Queue Can1_SendQueue;	    			  
-//QUEUE_DATA_T CAN1RevBuff[CAN1REVLEN];	  
-//QUEUE_DATA_T CAN1SendBuff[CAN1SENDLEN];		 
-
-//Queue Can2_RevQueue;	    			  
-//Queue Can2_SendQueue;	    			  
-//QUEUE_DATA_T CAN2RevBuff[CAN1REVLEN];	  
-//QUEUE_DATA_T CAN2SendBuff[CAN1SENDLEN];	
+	
 
 void bsp_can_int(void)
 {
@@ -24,18 +15,12 @@ void bsp_can_int(void)
     CAN1_RevQueue_init(&Can1RevQueue);
     CAN1_RevQueue_init(&Can1SendQueue);
     CAN2_RevQueue_init(&Can2RevQueue);
-    CAN2_RevQueue_init(&Can2SendQueue); 
-    
-//    InitQueue(&Can1_RevQueue,CAN1RevBuff,CAN1REVLEN); 
-//    InitQueue(&Can1_SendQueue,CAN1SendBuff,CAN1SENDLEN); 
-//    InitQueue(&Can2_RevQueue,CAN2RevBuff,CAN1REVLEN); 
-//    InitQueue(&Can2_SendQueue,CAN2SendBuff,CAN1SENDLEN);    
+    CAN2_RevQueue_init(&Can2SendQueue);    
 }
 /**************************************************************/
 void bsp_Can1SendQueueMsg_loop(void)
-{
-//    QUEUE_DATA_T QCanData;    
-      CAN_RevTye QCanData={0}; 
+{   
+    CAN_RevTye QCanData={0}; 
     FDCAN_TxHeaderTypeDef   CAN1_TxHeader;
 
     while(1)
@@ -44,9 +29,6 @@ void bsp_Can1SendQueueMsg_loop(void)
         {
             return;
         }
-//      if(!DeQueue(&Can1_SendQueue,&QCanData)){
-//            return;
-//        }
         if(!CAN1_RevQueue_dequeue(&Can1SendQueue,&QCanData))
            return;          
         CAN1_TxHeader.Identifier =QCanData.StdId;        
@@ -68,8 +50,7 @@ void bsp_Can1_SendPacket(const unsigned char * dataval,\
                           const unsigned char DLC,\
 					      const unsigned int Dev_ID)
 {
-//   QUEUE_DATA_T         Qsdata;
-     CAN_RevTye Qsdata={0}; 
+   CAN_RevTye Qsdata={0}; 
    FDCAN_TxHeaderTypeDef   CAN1_TxHeader;   
    
    if(dataval==NULL)
@@ -109,7 +90,6 @@ void bsp_Can1_SendPacket(const unsigned char * dataval,\
 }
 void bsp_Can2SendQueueMsg_loop(void)
 {
-//    QUEUE_DATA_T QCanData;   
     CAN_RevTye QCanData={0};     
     FDCAN_TxHeaderTypeDef   CAN2_TxHeader;
 
@@ -243,5 +223,17 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 	}    
 }
 
+void HAL_FDCAN_ErrorCallback(FDCAN_HandleTypeDef *hfdcan)
+{
+	if (hfdcan == &hfdcan1)
+	{
+        printf("can1_eer:%d\n",hfdcan->ErrorCode);
+    }
+    if (hfdcan == &hfdcan2)
+	{
+       printf("can2_eer:%d\n",hfdcan->ErrorCode); 
+    }
+
+}
 
 

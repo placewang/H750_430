@@ -25,15 +25,15 @@ void UI_my_deal_lock_time_feed(void)
 	//printf("%s\r\n", __FUNCTION__);
 	G_screen_lock_time = SCREEN_LOCK_TIME;
 	G_screen_backlight_time = SCREEN_BACKLIGHT_CLOSE_TIME;
-	BSP_LCD_backlight_enable(1);
+    BSP_LCD_backlight_Brightness(_LCD_ScreenBrightness);
 }
 
 void UI_my_deal_lock_the_screen(void)
 {
     
    lv_obj_set_parent(ui_Panel1,lv_scr_act());
-    
    _ui_flag_modify(ui_Panel1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE); 
+   BSP_LCD_backlight_Brightness(_LCD_LockScreenBrightness); 
 }
 
 
@@ -59,7 +59,6 @@ void GUI_ReSet_boot_updata(lv_event_t * e)
 	BSP_RTC_set_upgrade_flag();
 	NVIC_SystemReset(); // 复位	
 }
-  
 
 /*
 上电恢复配置参数及显示状态
@@ -67,21 +66,18 @@ void GUI_ReSet_boot_updata(lv_event_t * e)
 void UI_StartRecovery(void)
 {
     GUI_RefreshDir_mode1Page();
-    GUI_RefreshEncoderDir_setPage();
-    GUI_RefreshTensionAndSpeed_setPage();
     
     if(Discharge.devMode==_SingAxleMod)
     {
        GUI_SinglefeedMode_MAINPage(); 
-       GUI_SinglefeedMode_SetPage(); 
+
        GUI_SinglefeedMode_mode1Page();
     }
     else if(Discharge.devMode==_SinglAxisDoubleVolumeMode)
     {
-        GUI_SinglAxisDoubleVolumeMode_SetPage();
         GUI_SinglAxisDoubleVolumeMode_MAINPage();
     }
-    GUI_SetDefaultState_setPage();
+
     GUI_SetDefaultState_MAINPage();
     GUI_SetDefaultState_mode1Page();
     GUI_SetDefaultState_configPage();
@@ -102,9 +98,6 @@ void UI_my_deal_loop_1ms(void)
 			UI_my_deal_lock_the_screen();
 		}
 	}
-    GUI_DischargePosShow_1msloop_setPage();
-    GUI_StatusLabelShow_loop1ms_MAINPage(&Discharge,&Encode_handle,Discharge.devMode);
-
 }
 
 

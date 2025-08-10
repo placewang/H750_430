@@ -437,28 +437,13 @@ static void GUI_setEnableFollow(uint8_t motor,uint8_t enc)
     }
 }
 
-/*
-指示灯亮灭
-*/
-void indicatorlight_onORoff(char M_num,char sta)
-{
-    //up 
-    if(M_num==0)
-    {
-       HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,sta);
-    }
-    else if(M_num==1)
-    {
-      /*等改PCB版*/
-    }
-}
+
 void GUI_CF_startDwon(lv_event_t * e)
 {
 
     if (lv_obj_has_state(ui_STARTdwon,LV_STATE_CHECKED))
     {
         GUI_setEnableFollow(1,1);
-        indicatorlight_onORoff(1,1); 
         Discharge.DownMoveEnable=1;
         Discharge.RunFlag|=_Startflag_D;
         lv_label_set_text(ui_textStatDwon, Discharge.devMode!=_SingAxleMod?txtStop[uiCfg_Language]:txtSingStop[uiCfg_Language]);
@@ -470,7 +455,6 @@ void GUI_CF_startDwon(lv_event_t * e)
     {
         
         Down_DischargeStop();
-        indicatorlight_onORoff(1,0); 
         GUI_setEnableFollow(1,0);
         Discharge.DownMoveEnable=0;
         lv_label_set_text(ui_textStatDwon, Discharge.devMode!=_SingAxleMod?txtStart[uiCfg_Language]:txtSingStart[uiCfg_Language]);  
@@ -487,8 +471,7 @@ void GUI_CF_startUp(lv_event_t * e)
 {
     if (lv_obj_has_state(ui_STARTup,LV_STATE_CHECKED))
     {
-        GUI_setEnableFollow(0,1);
-        indicatorlight_onORoff(0,1);        
+        GUI_setEnableFollow(0,1);      
         Discharge.UpMoveEnable=1;
         Discharge.RunFlag|=_Startflag_U;
         lv_label_set_text(ui_textStatUp, txtUStop[uiCfg_Language]);
@@ -499,7 +482,6 @@ void GUI_CF_startUp(lv_event_t * e)
     else
     {
         Up_DischargeStop();
-        indicatorlight_onORoff(0,0);
         GUI_setEnableFollow(0,0);
         Discharge.UpMoveEnable=0;
         lv_label_set_text(ui_textStatUp, txtUStart[uiCfg_Language]);
@@ -526,43 +508,7 @@ void  SolenoidValveSwitch(void)
         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,0);
     }
 }
-//按钮启停
-void PhysicalButtonOperations(void)
-{
-    char DBT =50;
-    static uint8_t  u_lock=0,d_lock;  
-    if(lv_scr_act()!=ui_MAIN)
-        return;
-     if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_10))
-    {
-        Discharge.Upbtn_FlrTime=0;
-        u_lock=0;
-    }
-    if(HAL_GPIO_ReadPin(GPIOG,GPIO_PIN_13))
-    {
-        Discharge.Downbtn_FlrTime=0;
-        d_lock=0;
-    }   
-    if(!u_lock&&!HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_10)&&Discharge.Upbtn_FlrTime>=DBT)
-    {
-         u_lock=1;
-         Discharge.UpMoveEnable?lv_obj_clear_state(ui_STARTup, LV_STATE_CHECKED):
-                                lv_obj_add_state(ui_STARTup, LV_STATE_CHECKED);
-         lv_event_send(ui_STARTup,LV_EVENT_VALUE_CHANGED,NULL);
-         lv_event_send(ui_STARTup,LV_EVENT_CLICKED,NULL);  
-    
-    }
-    if(!d_lock&&!HAL_GPIO_ReadPin(GPIOG,GPIO_PIN_13)&&Discharge.Downbtn_FlrTime>=DBT)
-    {
-         d_lock=1;
-         Discharge.DownMoveEnable?lv_obj_clear_state(ui_STARTdwon, LV_STATE_CHECKED):
-                                lv_obj_add_state(ui_STARTdwon, LV_STATE_CHECKED);
-         lv_event_send(ui_STARTdwon,LV_EVENT_VALUE_CHANGED,NULL);
-         lv_event_send(ui_STARTdwon,LV_EVENT_CLICKED,NULL);   
-    
-    }    
-    
-}//
+//
 void  GUI_StatusLabelShow_loop1ms_MAINPage(RunParameter *sta,Encode*code,uint8_t mode)
 {   
     
@@ -584,10 +530,7 @@ void  GUI_StatusLabelShow_loop1ms_MAINPage(RunParameter *sta,Encode*code,uint8_t
         Stratlock=1;
         GUI_PowerOn_AutoStart(U_EncodeErrSta|U_motorErrSta,D_EncodeErrSta|D_motorErrSta,mode);        
     }
-    if(checkErrflag==1)
-    {
-       PhysicalButtonOperations();  
-    }
+    if(checkErrflag==1){}
     if(checkErrflag==1&&checkTtime>Time)
     {
         checkTtime=0;

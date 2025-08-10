@@ -72,7 +72,7 @@ void APP_CONFIG_load(void)
 	{
 		pid = MX25L_SPI_pid_data_read(index, &data);
 		
-		printf("READ config: pid = %08X, data = %d\r\n", pid, data);
+//		printf("READ config: pid = %08X, data = %d\r\n", pid, data);
 		
 		if (index == 0)
 		{

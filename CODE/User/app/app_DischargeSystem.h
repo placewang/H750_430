@@ -32,7 +32,7 @@ typedef struct
     unsigned int   Upbtn_FlrTime;
     unsigned int   Downbtn_FlrTime;     
     unsigned short UpTensionPos;   //上放料张力位置
-    unsigned short DownTensionPos; //下放料张力位置    
+     short DownTensionPos; //下放料张力位置    
     unsigned short UpJogSpeed;     //上放料点动速度
     unsigned short DownJogSpeed;   //下放料点动速度  
 

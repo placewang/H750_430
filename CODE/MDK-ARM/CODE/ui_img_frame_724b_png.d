@@ -125,4 +125,7 @@
 .\code\ui_img_frame_724b_png.o: ../Middlewares/LVGL/GUI/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.h
 .\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../ui_helpers.h
 .\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../ui.h
+.\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../components/ui_comp.h
+.\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../components/ui_comp_label4.h
+.\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../components/ui_comp_hook.h
 .\code\ui_img_frame_724b_png.o: ..\Middlewares\LVGL\MY_GUI\images\../ui_events.h

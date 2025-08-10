@@ -12,8 +12,8 @@ typedef struct
   unsigned char RxData[8];
 }CAN_RevTye;
 
-GENERIC_QUEUE(CAN1_RevQueue,CAN_RevTye,1)
-GENERIC_QUEUE(CAN2_RevQueue,CAN_RevTye,1)
+GENERIC_QUEUE(CAN1_RevQueue,CAN_RevTye,CAN1RevLen)
+GENERIC_QUEUE(CAN2_RevQueue,CAN_RevTye,CAN1SendLen)
 
 extern CAN1_RevQueue_t Can1RevQueue;
 extern CAN2_RevQueue_t Can2RevQueue;

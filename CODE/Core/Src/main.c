@@ -51,6 +51,7 @@
 #include "app_pid.h"
 #include "app_balanceRoll_code.h"
 #include "app_DischargeSystem.h"
+#include "app_RowknifeSystem.h"
 #include "app_delta_servo.h"
 
 #include "lvgl.h"
@@ -62,6 +63,9 @@
 
 #include "ui.h"
 #include "ui_my_deal.h"
+
+
+#include "p_set.h"
 
 /* USER CODE END Includes */
 
@@ -145,16 +149,13 @@ void APP_init(void)
 	UI_my_deal_init();
     
 	APP_CONFIG_load();
-
-
 }
 
 void MAIN_timer_1ms_Handler(void)
 {
 	G_timer_1ms_wr++;
-    Discharge.PIDRefreshTime++;
-    Discharge.Upbtn_FlrTime++;
-    Discharge.Downbtn_FlrTime++;
+    Pretr_RealTimeing_setPage();
+    appRowKnifeRealTimeing();
 //    Encode_handle.ReadIntervalTime++;
     BSP_TOUCH_loop_1ms(); 
 	lv_tick_inc(1);
@@ -181,6 +182,7 @@ void MAIN_loop_1ms(void)
 }
 
 void PeriphCommonClock_Config(void);
+
 /* USER CODE END 0 */
 
 /**
@@ -229,14 +231,15 @@ int main(void)
   MX_FDCAN2_Init();
   MX_RTC_Init();
   MX_UART5_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   BSP_init();
   APP_init();
-  BalanceRollEncodeInit();
-  PID_param_init(0);
+
   DELTA_Servo_init(); 
   UI_StartRecovery();
-  BSP_LCD_backlight_enable(1);
+  BSP_LCD_backlight_Brightness(_LCD_ScreenBrightness);
+  Pretr_setInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -246,11 +249,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      DischargeRunloopTask();
+      appRowKnifeSystemTask_loop();
       bsp_Can1SendQueueMsg_loop();
-      bsp_Can2SendQueueMsg_loop();	
-//      printf("Encode %u\n",BSP_ENCODER_getCounter()); 
-        
+//      bsp_Can2SendQueueMsg_loop();
+      Pretr_RealTimeRefreshShowloop_setPage();      
       if (G_timer_1ms_wr != G_timer_1ms_rd)
 	  {
 		G_timer_1ms_rd++;

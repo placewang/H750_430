@@ -4,3 +4,4 @@
 .\code\bsp_touchset.o: ..\User\bsp\bsp_gt911.h
 .\code\bsp_touchset.o: D:\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\code\bsp_touchset.o: ..\User\bsp\bsp_iic.h
+.\code\bsp_touchset.o: ..\User\bsp\bsp_lcd.h

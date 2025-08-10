@@ -77,6 +77,8 @@
 .\code\main.o: ../User/app/app_pid.h
 .\code\main.o: ../User/app/app_balanceRoll_code.h
 .\code\main.o: ../User/app/app_DischargeSystem.h
+.\code\main.o: ../User/app/app_RowknifeSystem.h
+.\code\main.o: ../User/app/app_Rwkf_pid.h
 .\code\main.o: ../User/app/app_delta_servo.h
 .\code\main.o: ../Middlewares/LVGL/GUI/lvgl/lvgl.h
 .\code\main.o: ../Middlewares/LVGL/GUI/lvgl/src/misc/lv_log.h
@@ -212,3 +214,4 @@
 .\code\main.o: ../Middlewares/LVGL/MY_GUI/components/ui_comp_hook.h
 .\code\main.o: ../Middlewares/LVGL/MY_GUI/ui_events.h
 .\code\main.o: ../Middlewares/LVGL/MY_GUI/ui_my_deal.h
+.\code\main.o: ../MVP/Presenter/p_set.h

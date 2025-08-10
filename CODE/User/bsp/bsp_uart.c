@@ -180,14 +180,14 @@ unsigned char BSP_UART4_send_byte(unsigned char data)
 
 void BSP_UART_loop(void)
 {
-   int len=0;
-   uint8_t data[300]={0};
-	if (Uart5Queue.count>0)
-	{ 
-       len=Uart5Queue_dequeue_batch(&Uart5Queue,data,Uart5Queue.count);
-	   printf("%d__%s\n",len,data);	
-	
-	}	
+//   int len=0;
+//   uint8_t data[300]={0};
+//	if (Uart5Queue.count>0)
+//	{ 
+//       len=Uart5Queue_dequeue_batch(&Uart5Queue,data,Uart5Queue.count);
+//	   printf("%d__%s\n",len,data);	
+//	
+//	}	
 
 }
 

@@ -5,7 +5,6 @@
 /* 定义全局变量 */
 _pid DownMove_pid,UpMove_pid;
 
-
 /**
   * @brief  PID参数初始化
   swt: 1：上放料 2下放料  0:全部
@@ -50,7 +49,6 @@ void set_pid_target(_pid *pid, float temp_val)
 {
   pid->target_val = temp_val;    // 设置当前的目标值
 }
-
 /**
   * @brief  设置实际值
   * @param  val		目标值

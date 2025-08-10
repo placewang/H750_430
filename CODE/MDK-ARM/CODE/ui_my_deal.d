@@ -178,7 +178,7 @@
 .\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\components/ui_comp_label4.h
 .\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\components/ui_comp_hook.h
 .\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\ui_events.h
-.\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\ui_my_set.h
+.\code\ui_my_deal.o: ../MVP/View/ui_my_set.h
 .\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\ui_my_mode1.h
 .\code\ui_my_deal.o: ..\Middlewares\LVGL\MY_GUI\ui_my_MAIN.h
 .\code\ui_my_deal.o: ../User/app/app_balanceRoll_code.h

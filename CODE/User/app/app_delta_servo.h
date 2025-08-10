@@ -30,8 +30,10 @@
 extern char appDeltServoType;
 
 void DELTA_Servo_init(void); 
+void DELTA_Servo_MovePos(short s_pos,short s_speed,unsigned char );
 void DELTA_Set_motorID(unsigned char mID);
 void DELTA_Servo_GetSpeed(unsigned char ACCnodeid); 
+void DELTA_Servo_GetPos(unsigned char ACCnodeid);
 void DELTA_Servo_SetMode(unsigned char node_id,unsigned char mode); 
 void DELTA_Servo_SetTargetSpeed(unsigned char,signed int);
 void DELTA_Servo_enable(unsigned char,unsigned char);

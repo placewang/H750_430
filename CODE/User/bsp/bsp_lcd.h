@@ -74,10 +74,12 @@ enum
 #define LCD_PIXFORMAT_AL44			0X06			//ARGB8888格式
 #define LCD_PIXFORMAT_AL88 			0X07			//ARGB8888格式
 
+#define _LCD_LockScreenBrightness 4000
+#define _LCD_ScreenBrightness     12000
 void LTDC_Color_Fill(unsigned short sx, unsigned short sy, unsigned short ex, unsigned short ey, unsigned short *color_p);
 void LTDC_Draw_Point(unsigned short x, unsigned short y, unsigned short color);
 
-void BSP_LCD_backlight_enable(unsigned char enable);
+void BSP_LCD_backlight_Brightness(unsigned short DutyCycle);
 
 void BSP_LCD_init(void);
 void BSP_LCD_loop_1ms(void);

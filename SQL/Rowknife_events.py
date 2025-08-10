@@ -98,3 +98,35 @@ def GUI_Downmotor_Jog_CC(event_struct):
 def GUI_Downmotor_Jog_CCstop(event_struct):
     return
 
+
+def Pretr_claerEncdeCallback(event_struct):
+    return
+
+
+def Pretr_MovePosCallback(event_struct):
+    return
+
+
+def Pretr_setParameterCallback(event_struct):
+    return
+
+
+def Pretr_JogForwardCallback(event_struct):
+    return
+
+
+def Pretr_JogReverseCallback(event_struct):
+    return
+
+
+def Pretr_MoveToZeroCallback(event_struct):
+    return
+
+
+def Pretr_MoveStartCallback(event_struct):
+    return
+
+
+def Pretr_EncdeCorrelationCallback(event_struct):
+    return
+

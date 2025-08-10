@@ -1,7 +1,6 @@
 #ifndef __BSP_PID_H
 #define	__BSP_PID_H
 
-
 /*pid*/
 typedef struct
 {

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "ltdc.h"
 #include "gpio.h"
+#include "tim.h"
 #include "font.h"
 #include "stm32h7xx_hal.h"
 
@@ -311,18 +312,11 @@ void LCD_ShowNum(unsigned short x,unsigned short y,unsigned int num,unsigned cha
 	}
 } 
 
-void BSP_LCD_backlight_enable(unsigned char enable)
-{
-	if (enable)
-	{
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
-	}
-	else
-	{
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
-	}
-}
 
+void BSP_LCD_backlight_Brightness(unsigned short DutyCycle)
+{
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3,DutyCycle);
+}
 /*****************************************************************
 Uart_thread:
 	串口数据收发处理线程。。。
@@ -335,11 +329,10 @@ void BSP_LCD_init(void)
 //	memset(LCD_framebuf, 0xFF, LCD_BUF_SIZE);
 	
 	//LTDC_init();
-
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);  // 启动TIM3 CH3 PWM
 	printf("LTDC_init ..........\r\n");
 	
-	
-	
+		
 //	while(1)
 //	{
 //		h(3000);	// 目前的设

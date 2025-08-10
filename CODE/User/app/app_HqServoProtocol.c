@@ -5,7 +5,7 @@
 
 void CanSend(uint8_t *DataBuf, uint8_t Len, const unsigned int ID)
 {
-    HAL_Delay(4); 
+//    HAL_Delay(6); 
     bsp_Can1_SendPacket(DataBuf,Len,ID);
 }
 
@@ -86,6 +86,23 @@ void SpeedRunCmd(int16_t speed,uint16_t sid)
     CanSend(writedata,8,CANSendID);      
 }
 /*
+位置模式
+*/
+void PosRunCmd(int16_t pos,int16_t speed,uint16_t sid)
+{
+	unsigned char writedata[8]={0};
+    writedata[0]=Cmd_RunMode;
+    writedata[1]=sid;
+    writedata[2]=PosMode;
+    writedata[3]=pos&0xff;
+    writedata[4]=(pos>>8)&0xff;
+    writedata[5]=speed&0xff;
+    writedata[6]=(speed>>8)&0xff;       
+    /*调硬件接口发送*/
+    CanSend(writedata,8,CANSendID);      
+}
+
+/*
 电机使能/失能
 */
 void EnableOrDisable(uint8_t ble,uint16_t eid)
@@ -124,6 +141,7 @@ HqServo appHqservo={
     .SetSysParameter=WriteSystemParameter,
     .EnableDisa  =EnableOrDisable,
     .SpeedModeRun=SpeedRunCmd,
+    .PosModeRun=PosRunCmd,
     .ReadRunParameter=RunParameter_r,
     .UpgradeCmdSend=upgradeCmd
 };

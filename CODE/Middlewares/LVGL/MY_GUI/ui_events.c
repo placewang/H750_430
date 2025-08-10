@@ -197,3 +197,53 @@ void GUI_CF_startDwon(lv_event_t * e)
 {
 	// Your code here
 }
+
+void Pretr_set_Parameter(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_set_ParameterCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_setParameterCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_claerEncdeCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_MovePosCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_JogForwardCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_JogReverseCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_MoveToZeroCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_MoveStartCallback(lv_event_t * e)
+{
+	// Your code here
+}
+
+void Pretr_EncdeCorrelationCallback(lv_event_t * e)
+{
+	// Your code here
+}

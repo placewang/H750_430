@@ -1,3 +1,4 @@
+#include "main.h"
 #include "app_delta_servo.h"
 #include "app_sdo.h"
 #include "app_HqServoProtocol.h"
@@ -19,8 +20,36 @@ void DELTA_Servo_GetSpeed(unsigned char ACCnodeid)
         CanOpen_SdoRead(ACCnodeid,OD_READ_CUR_SPEED,0);
    }
 }
-
-
+/*
+读速度
+ACCnodeid:设备id
+*/
+void DELTA_Servo_GetPos(unsigned char ACCnodeid) 
+{
+   if(appDeltServoType)
+   {
+        appHqservo.ReadRunParameter(Cmd_TypeReadRunPmr,Rspos,ACCnodeid);    
+   }
+//   else
+//   {       
+// 
+//   }
+}
+/*
+走位置
+ACCnodeid:设备id
+*/
+void DELTA_Servo_MovePos(short s_pos,short s_speed,unsigned char ACCnodeid) 
+{
+   if(appDeltServoType)
+   {
+        appHqservo.PosModeRun(s_pos,s_speed,ACCnodeid);    
+   }
+//   else
+//   {       
+// 
+//   }
+}
 /*
 设置加速时间
 ACCnodeid:设备id
@@ -168,18 +197,31 @@ void DELTA_Servo_init(void)
 {
    if(appDeltServoType)
    {
-        DELTA_AlarmOperation(alarmEnable,UP_NODE_ID);
-        DELTA_AlarmOperation(alarmEnable,DOWN_NODE_ID);
-        appHqservo.SetWorkParameter(wkDecRatio_M,0x0a,UP_NODE_ID);   
-        appHqservo.SetWorkParameter(wkDecRatio_M,0x0a,DOWN_NODE_ID); 
-        appHqservo.SetWorkParameter(wkDenominator,0x01,UP_NODE_ID);   
-        appHqservo.SetWorkParameter(wkDenominator,0x01,DOWN_NODE_ID); 
-        appHqservo.SetWorkParameter(wkAcceleration,2000,UP_NODE_ID);   
-        appHqservo.SetWorkParameter(wkAcceleration,2000,DOWN_NODE_ID);     
-        appHqservo.SetWorkParameter(wkResponsiveness,5000,UP_NODE_ID);   
-        appHqservo.SetWorkParameter(wkResponsiveness,5000,DOWN_NODE_ID);      
-        DELTA_Servo_enable(UP_NODE_ID,1);
-        DELTA_Servo_enable(DOWN_NODE_ID,1);       
+       appHqservo.SetWorkParameter(wkPosGearRatioMolecule,250,DOWN_NODE_ID);
+       HAL_Delay(10);   
+//        DELTA_AlarmOperation(alarmEnable,UP_NODE_ID);
+       DELTA_AlarmOperation(alarmEnable,DOWN_NODE_ID);
+       HAL_Delay(10); 
+//        appHqservo.SetWorkParameter(wkDecRatio_M,0x0a,UP_NODE_ID);   
+       appHqservo.SetWorkParameter(wkDecRatio_M,0x0a,DOWN_NODE_ID); 
+       HAL_Delay(10); 
+//        appHqservo.SetWorkParameter(wkDenominator,0x01,UP_NODE_ID);   
+       appHqservo.SetWorkParameter(wkDenominator,0x01,DOWN_NODE_ID); 
+       HAL_Delay(10); 
+       appHqservo.SetWorkParameter(wkAcceleration,8000,DOWN_NODE_ID);     
+       HAL_Delay(10);  
+       appHqservo.SetWorkParameter(wkResponsiveness,7000,DOWN_NODE_ID); 
+       HAL_Delay(10);        
+       DELTA_Servo_enable(DOWN_NODE_ID,1); 
+       HAL_Delay(10); 
+//       appHqservo.SetWorkParameter(wkPosHighAcceleration,6000,DOWN_NODE_ID);   
+//       HAL_Delay(10); 
+//       appHqservo.SetWorkParameter(wkPosLowAcceleration,4000,DOWN_NODE_ID); 
+//       HAL_Delay(10); 
+//       appHqservo.SetWorkParameter(wkPosMaxResponsiveness,2500,DOWN_NODE_ID);   
+//       HAL_Delay(10);       
+//       appHqservo.SetWorkParameter(wkPosMinResponsiveness,1500,DOWN_NODE_ID);        
+//       HAL_Delay(10);       
    }
    else
    {    

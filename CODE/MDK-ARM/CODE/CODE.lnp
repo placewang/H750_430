@@ -231,6 +231,8 @@
 ".\code\app_dischargesystem.o"
 ".\code\app_dischargegui_config.o"
 ".\code\app_hqservoprotocol.o"
+".\code\app_rowknifesystem.o"
+".\code\app_rwkf_pid.o"
 ".\code\ui.o"
 ".\code\ui_helpers.o"
 ".\code\ui_main.o"
@@ -242,7 +244,6 @@
 ".\code\ui_set.o"
 ".\code\ui_mode1.o"
 ".\code\ui_config.o"
-".\code\ui_my_set.o"
 ".\code\ui_my_config.o"
 ".\code\ui_my_mode1.o"
 ".\code\ui_my_main.o"
@@ -269,7 +270,11 @@
 ".\code\ui_img_2113159062.o"
 ".\code\ui_img_bg_init_png.o"
 ".\code\ui_img_whq_png.o"
+".\code\ui_img_frame_724b_png.o"
 ".\code\test.o"
+".\code\m_set.o"
+".\code\p_set.o"
+".\code\ui_my_set.o"
 --strict --scatter ".\CODE\CODE.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -226,7 +226,7 @@ void BSP_GT911_timer_1ms(void)
 	unsigned char pin_status;
 	
 	count++;
-	if (count >= 5)
+	if (count >= 10)
 	{
 		count = 0;
 		pin_status = HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_11);

@@ -2,6 +2,7 @@
 #include "bsp_touch.h"
 #include "bsp_gt911.h"
 #include "bsp_iic.h"
+#include "bsp_lcd.h"
 typedef struct
 {
 	unsigned char type;
@@ -31,6 +32,7 @@ void BSP_TOUCH_loop_1ms(void)
         BSP_GT911_timer_1ms();
     }
 }
+void UI_my_deal_lock_time_feed(void);
 unsigned char BSP_TOUCH_get_press(void)
 {
     char touch_press;
@@ -42,6 +44,9 @@ unsigned char BSP_TOUCH_get_press(void)
     {
         touch_press=BSP_GT911_get_pen();
     }
+    if(touch_press)
+        UI_my_deal_lock_time_feed();
+
     return touch_press;    
 }
 void BSP_TOUCH_get_position(unsigned short *x, unsigned short *y)
